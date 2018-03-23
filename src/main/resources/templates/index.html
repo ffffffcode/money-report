@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleay.com">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script th:src="@{jquery.min.js}" type="text/javascript"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet">
+
+    <!-- 时间选择器TimePicker -->
+    <link th:href="@{time/bootstrap-datetimepicker.min.css}" rel="stylesheet">
+    <script th:src="@{time/moment-with-locales.min.js}" type="text/javascript"></script>
+    <script th:src="@{time/bootstrap-datetimepicker.min.js}" type="text/javascript"></script>
+
+    <title>407财政报告</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" action="/save" method="post">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">姓名：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="贡献人姓名">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="money" class="col-sm-2 control-label">价格：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="money" name="money" placeholder="00.00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="date" class="col-sm-2 control-label">时间：</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date" id="date-ico">
+                            <input class="form-control" name="date"
+                                   placeholder="选择日期" type="text" id="date"> <span
+                                class="input-group-addon"> <i
+                                class="glyphicon glyphicon-calendar"></i>
+								</span>
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#date-ico').datetimepicker({
+                                    format: 'YYYY-MM-DD',
+                                    locale: moment.locale('zh-cn')
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="intention" class="col-sm-2 control-label">用处：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="intention" name="intention" placeholder="请填写具体的用处">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <button type="submit" class="btn btn-default" id="save">提交</button>
+                    </div>
+                </div>
+            </form>
+            <table>
+                <tr th:each="report : ${report}">
+                    <p th:text="${report.name}"></p>
+                    <p>于</p>
+                    <p th:text="${report.date}"></p>
+                    <p>，为组织花了</p>
+                    <p th:text="${report.money}"></p>
+                    <p>元，用作</p>
+                    <p th:text="${report.intention}"></p><strong>组织特此感谢！</strong>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<!--<script>
+    // 点击提交按钮触发
+    function save() {
+        //执行ajax
+        $.ajax({
+            // 提交方式
+            type: "POST",
+            // 访问servleturl
+            url: "/save",
+            data: {
+                name: $("#name").val(),
+                money: $("#money").val(),
+                date: $("#date").val(),
+                usage: $("#usage").val()
+            },
+            // 服务器成功返回结果后，会把结果保存到data中
+            success: function (data) {
+                // 先把表体部分清空
+                $("#g_tbody").empty();
+                // eval获取返回的JSON对象集合
+                var data = eval('(' + result + ')');
+                // 把数据显示到页面的方法
+            }
+        });
+    }
+</script>-->
+</html>
