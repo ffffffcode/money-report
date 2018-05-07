@@ -1,8 +1,7 @@
 package ex.aaronfae.report.dao;
 
 import ex.aaronfae.report.entity.Report;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ReportRepository extends CrudRepository<Report, Integer> {
+public interface ReportRepository extends JpaRepository<Report, Long> {
 }

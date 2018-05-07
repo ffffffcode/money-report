@@ -1,70 +1,34 @@
 package ex.aaronfae.report.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
+@Data
+@AllArgsConstructor
 public class Report {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String name;
-    private BigDecimal money;
-    private Date date;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT UNSIGNED")
+    private Long id;
+    @Column(columnDefinition = "CHAR(4)", nullable = false)
+    private String realName;
+    @Column(columnDefinition = "DECIMAL(19,2) UNSIGNED", nullable = false)
+    private BigDecimal price;
+    @Column(columnDefinition = "DATE", nullable = false)
+    private Date contributingTime;
+    @Column(nullable = false)
+    private Date submitTime;
+    private Date confirmTime;
+    @Column(columnDefinition = "VARCHAR(50)", nullable = false)
     private String intention;
 
     public Report() {
-    }
-
-    public Report(String name, BigDecimal money, Date date, String intention) {
-        this.name = name;
-        this.money = money;
-        this.date = date;
-        this.intention = intention;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getMoney() {
-        return money;
-    }
-
-    public void setMoney(BigDecimal money) {
-        this.money = money;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getIntention() {
-        return intention;
-    }
-
-    public void setIntention(String intention) {
-        this.intention = intention;
     }
 }
