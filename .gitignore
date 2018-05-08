@@ -98,3 +98,10 @@ buildNumber.properties
 out
 gen
 /src/main/resources/application-prod.properties
+src/main/resources/static/image/Price_128px.ico
+src/main/resources/static/image/Price_16px.ico
+src/main/resources/static/image/Price_32px.ico
+src/main/resources/static/image/Price_48px.ico
+src/main/resources/static/image/Price_64px.ico
+src/main/resources/static/image/Price_72px.ico
+src/main/resources/static/image/Price_96px.ico
