@@ -8,5 +8,5 @@ import java.util.List;
 public interface ReportService {
     void save(ReportVO reportVO);
 
-    List<Report> list();
+    List<ReportVO> list();
 }

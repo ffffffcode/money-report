@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +41,12 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<Report> list() {
-        return reportRepository.findAll();
+    public List<ReportVO> list() {
+        List<ReportVO> reportVOList = new ArrayList<>();
+        List<Report> reportList = reportRepository.findAll();
+        for (Report report : reportList) {
+            reportVOList.add(new ReportVO(report.getRealName(), report.getPrice(), new SimpleDateFormat("yyyy-MM-dd").format(report.getContributingTime()), report.getIntention()));
+        }
+        return reportVOList;
     }
 }

@@ -1,5 +1,6 @@
 package ex.aaronfae.report.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.DecimalMin;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
+@AllArgsConstructor
 public class ReportVO {
 
     @NotNull(message = "请填写姓名")
