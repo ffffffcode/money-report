@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script th:src="@{/jquery.min.js}" type="text/javascript"></script>
     <!-- Bootstrap -->
@@ -10,17 +11,18 @@
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet">
 
+    <link th:href="@{/css/report.css}" rel="stylesheet">
+
     <!-- 时间选择器TimePicker -->
-    <link th:href="@{/time/bootstrap-datetimepicker.min.css}" rel="stylesheet">
     <script th:src="@{/time/moment-with-locales.min.js}" type="text/javascript"></script>
     <script th:src="@{/time/bootstrap-datetimepicker.min.js}" type="text/javascript"></script>
+    <link th:href="@{/time/bootstrap-datetimepicker.min.css}" rel="stylesheet">
 
     <title>贡献列表</title>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -29,21 +31,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="/image/Price_24px.ico"></a>
+            <a class="navbar-brand" href="/"><img class="logo"
+                                                  src="data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwMCAxMDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPG1ldGFkYXRhPiDnn6Lph4/lm77moIfkuIvovb0gOiBodHRwOi8vd3d3LnNmb250LmNuLyA8L21ldGFkYXRhPjxnPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDUxMS4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiPjxwYXRoIGQ9Ik00MjQxLjcsNTAwNS41Yy0xOTEuOC0yMy43LTU2NS45LTExMy42LTc1NS4zLTE4MGMtNDQ1LjEtMTU2LjMtODE0LjUtMzg1LjktMTE2Ny4zLTcyNi45Yy01MTMuOC00OTIuNS04MTIuMS0xMDI1LjMtOTcwLjgtMTczMy4yYy03OC4xLTM1Mi44LTc4LjEtOTYzLjcsMi40LTEzMjEuMkMxNDk1LjEsMzkwLjcsMTc1Ny45LTExMS4zLDIyMDMtNTczYzQ5Mi41LTUxMy44LDEwMzkuNS04MTkuMiwxNzM4LTk3MC44YzM0My4zLTczLjQsOTYzLjctNzMuNCwxMzExLjgsMGM2NDQsMTM5LjcsMTE2MC4yLDQxMiwxNjI5LDg2MS45YzUxMy44LDQ5Mi41LDgzNS44LDEwODIuMSw5NzMuMiwxNzgyLjljNjMuOSwzMjIsNTkuMiw5NDAtOS41LDEyNTkuN2MtMTUxLjYsNjk4LjUtNDU3LDEyNDUuNC05NzAuOCwxNzM4Yy02MTAuOSw1ODcuMi0xMzMwLjcsODg1LjUtMjE4My4xLDkwNi45QzQ0OTAuMyw1MDEyLjYsNDI4Ni43LDUwMTAuMyw0MjQxLjcsNTAwNS41eiBNNTE2MC40LDQ0NjUuN0M2MDI0LjYsNDI3Ni4yLDY3MzUsMzcyNi45LDcxMjgsMjk0My4yYzE5NC4xLTM5MC43LDI2OS45LTczNi40LDI2OS45LTEyMzguM2MwLTQxNC40LTIzLjctNTc1LjQtMTM3LjMtOTE0QzY5OTMuMS05LjQsNjMxMS4xLTY5MS40LDU1MTAuOC05NTguOWMtMzM4LjYtMTEzLjctNDk5LjYtMTM3LjMtOTE0LTEzNy4zcy01NzUuNCwyMy43LTkxNCwxMzcuM0MyODgyLjYtNjkxLjQsMjIwMC43LTkuNCwxOTMzLjEsNzkwLjljLTI2Ny42LDc5Ny45LTE3Ny42LDE2NDgsMjQ4LjYsMjM2MC43YzQ0MC40LDcyOS4zLDExNjUsMTIxMi4zLDIwMjQuNSwxMzQ3LjNDNDQwNS4xLDQ1MjkuNiw0OTU0LjQsNDUxMC42LDUxNjAuNCw0NDY1Ljd6IiBzdHlsZT0iZmlsbDojZWI0ZjM4Ij48L3BhdGg+PHBhdGggZD0iTTQzNjAuMSwzMjEwLjd2LTE1MS41bC03NS44LTE2LjZjLTQyLjYtOS41LTE0Mi4xLTQ3LjQtMjIyLjYtODUuMmMtNDcxLjItMjIyLjYtNjA2LjEtODEyLjEtMjY3LjYtMTE2OS43YzEzMi42LTEzOS43LDMwMC43LTIzNi44LDYxMC45LTM1Mi44YzExOC40LTQ1LDI2Mi44LTEwOC45LDMyMi0xNDIuMWMyMTcuOC0xMjcuOSwyMzYuOC0zNDguMSw0MC4zLTQ2OC44Yy0xNjguMS0xMDQuMi01OTkuMS03My40LTg5Ny40LDYzLjljLTczLjQsMzMuMi0xMzcuMyw1Ni44LTE0Mi4xLDQ5LjdjLTQuNy00LjctNDAuMy0xMjMuMS03NS44LTI2MC41bC02OC43LTI1NS43bDEwNC4yLTQ1YzE0NC40LTU5LjIsMzU1LjItMTEzLjYsNTI4LTEzMC4ybDE0NC40LTE2LjZ2LTIzMnYtMjM0LjRoMTQyLjFoMTQyLjFWMTEuOHYyNDguNmg2OC43Yzk3LjEsMCwzMzYuMiw3OC4xLDQ1OS40LDE0OS4yYzEzNSw4MC41LDI5My42LDI1My40LDM1NS4yLDM5MC43YzM3LjksODUuMyw0OS43LDE1OC43LDUyLjEsMzEyLjZjMCwxNzIuOC05LjUsMjIwLjItNjYuMywzMzYuMmMtMTA0LjIsMjEzLjEtMzAwLjcsMzU3LjUtNjg0LjMsNTAyYy0yMTMuMSw3OC4xLTM5MywxNzUuMi00NTkuNCwyMzkuMWMtMTM0LjksMTM1LTI4LjQsMzQ4LjEsMTkxLjgsMzc4LjhjMTYxLDI2LjEsNDA3LjMsMCw1NzAuNi01OS4yYzc1LjgtMjYsMTU2LjMtNTQuNSwxNzUuMi02MS42YzI4LjQtOS41LDQ5LjcsNDIuNiw5OS41LDIzMmMzMy4xLDEzMi42LDU2LjgsMjUxLDUyLjEsMjYwLjVjLTI4LjQsNDUtMzQ4LDExOC40LTU3MC42LDEzMC4ybC0yNDMuOSwxNC4ydjEzNy4zdjEzOS43aC0xNDIuMWgtMTQyLjFWMzIxMC43eiIgc3R5bGU9ImZpbGw6I2ViNGYzOCI+PC9wYXRoPjxwYXRoIGQ9Ik0yMzAyLjUsMTkwOC41Yy0yMDYtMTEzLjctMTE4LjQtNDQwLjQsMTE2LTQ0MC40YzEyMC43LDAsMjM2LjgsMTE2LDIzNi44LDIzNC40QzI2NTUuMywxODgwLDI0NTguOCwxOTk2LDIzMDIuNSwxOTA4LjV6IiBzdHlsZT0iZmlsbDojZWI0ZjM4Ij48L3BhdGg+PHBhdGggZD0iTTY2NTkuMiwxOTA4LjVjLTIwNi0xMTMuNy0xMTguNC00NDAuNCwxMTYtNDQwLjRjMTIwLjgsMCwyMzYuOCwxMTYsMjM2LjgsMjM0LjRDNzAxMiwxODgwLDY4MTUuNSwxOTk2LDY2NTkuMiwxOTA4LjV6IiBzdHlsZT0iZmlsbDojZWI0ZjM4Ij48L3BhdGg+PHBhdGggZD0iTTc0MDcuNC01NDIuMmMtMTUxLjYtMTk2LjYtNTY1LjktNTc3LjgtNzk4LTczNGMtNDE0LjQtMjc3LTg5Mi42LTQ3MS4yLTEzODUuMS01NjEuMmMtMTE2LTIxLjMtMjE3LjgtNDAuMy0yMjAuMi00NWMtNC43LTQuNyw0NzMuNi02NjAuNiwxMDY1LjUtMTQ1OC41TDcxNDIuMi00NzkwbDExLjgsMTIwNy42bDExLjgsMTIwOS45bDEyMjguOS00NTkuM2M2NzcuMi0yNTMuNCwxMjMxLjMtNDU3LDEyMzYtNDUyLjNDOTYzNy45LTMyNzcsNzUzMi45LTQzOCw3NTE0LTQzMC45Qzc1MDQuNS00MjguNSw3NDU0LjgtNDc4LjMsNzQwNy40LTU0Mi4yeiIgc3R5bGU9ImZpbGw6I2ViNGYzOCI+PC9wYXRoPjxwYXRoIGQ9Ik0xODE5LjUtNjkxLjRjLTI4LjQtNDUtMTM0Ny4zLTI0NzQuMy0xNDM0LjktMjY0MC4xYy0zNS41LTcxLTEwOC45LTEwMS44LDEwOTYuMyw0NzUuOWM1NTguOCwyNjcuNiwxMDIwLjUsNDgzLDEwMjUuMyw0NzguM2M0LjctNC43LDc4LjEtNTI4LDE2MS0xMTYyLjZzMTU2LjMtMTE1Ny45LDE2My40LTExNjVjNC43LTcuMSwyMy43LDE0LjIsNDAuMyw0NWMxNC4yLDI4LjQsMzU3LjUsNjYwLjYsNzYwLjEsMTQwMS43YzU0OS4zLDEwMTMuNCw3MjQuNSwxMzUyLDcwMC44LDEzNjYuMmMtMTYuNiwxMS44LTYzLjksMjEuMy0xMDYuNiwyMS4zYy0xMzAuMiwwLTUzNS4xLDg3LjYtNzY3LjIsMTY1LjdjLTUxMS40LDE2OC4xLTk1MS44LDQzOC0xMzQ5LjYsODI0QzE4NTUtNjM2LjksMTg1Mi42LTYzNi45LDE4MTkuNS02OTEuNHoiIHN0eWxlPSJmaWxsOiNlYjRmMzgiPjwvcGF0aD48L2c+PC9nPjwvc3ZnPiAg"
+                                                  width="32" height="32"></a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/">添加贡献</a></li>
-                <li class="active"><a href="#">财政报告<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/">添加贡献<span class="sr-only">(current)</span></a></li>
+                <li><a href="/report/list">财政报告</a></li>
             </ul>
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="">
-                </div>
-                <button type="submit" class="btn btn-default">搜索</button>
-            </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/login">登录</a></li>
                 <li><a href="/register">注册</a></li>
@@ -59,11 +55,13 @@
                     </ul>
                 </li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
-<div class="container-fluid">
-    <div class="row-fluid">
+
+<div class="container">
+
+    <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <table class="table table-striped table-bordered">
@@ -88,7 +86,8 @@
         </div>
         <div class="col-md-1"></div>
     </div>
-    <div class="row-fluid text-center">
+
+    <div class="row text-center">
         <nav aria-label="Page navigation">
             <ul class="pagination pagination-lg">
                 <li>
@@ -109,6 +108,7 @@
             </ul>
         </nav>
     </div>
+
 </div>
 </body>
 </html>

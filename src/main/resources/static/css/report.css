@@ -1,0 +1,21 @@
+/*
+ * Globals
+ */
+
+body {
+    font-family: Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 15px;
+    color: #555;
+    padding-top: 70px;
+}
+
+.logo {
+    position: relative;
+    bottom: 4px;
+    max-height: 32px;
+}
+
+.navbar-brand > img {
+    display: inline-block;
+}
+
