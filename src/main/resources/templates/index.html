@@ -58,65 +58,62 @@
         </div>
     </div>
 </nav>
-
 <div class="container">
-
     <div class="jumbotron">
-        <div class="row">
+        <div class="row text-center">
             <h1>欢迎您，贡献者!</h1>
             <p>快添加您的贡献吧，哈哈哈</p>
         </div>
-    </div>
-
-    <div class="row text-center">
-        <form class="form-horizontal" action="/report/save" method="post">
-            <div class="form-group">
-                <label for="name" class="col-sm-4 control-label">姓名：</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" id="name" name="realName" placeholder="贡献人姓名">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="price" class="col-sm-4 control-label">价格：</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" id="price" name="price" placeholder="00.00">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="date" class="col-sm-4 control-label">时间：</label>
-                <div class="col-sm-4">
-                    <div class="input-group date" id="date-ico">
-                        <input class="form-control" name="contributingTime"
-                               placeholder="选择日期" type="text" id="date"> <span
-                            class="input-group-addon"> <i
-                            class="glyphicon glyphicon-calendar"></i>
-								</span>
+        <div class="row">
+            <form class="form-horizontal" action="/report/save" method="post">
+                <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">姓名：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="name" name="realName" placeholder="贡献人姓名">
                     </div>
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#date-ico').datetimepicker({
-                                format: 'YYYY-MM-DD',
-                                locale: moment.locale('zh-cn')
+                </div>
+                <div class="form-group">
+                    <label for="price" class="col-sm-4 control-label">价格：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="price" name="price" placeholder="00.00">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="date" class="col-sm-4 control-label">时间：</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date" id="date-ico">
+                            <input class="form-control" name="contributingTime"
+                                   placeholder="选择日期" type="text" id="date"> <span
+                                class="input-group-addon"> <i
+                                class="glyphicon glyphicon-calendar"></i>
+								</span>
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#date-ico').datetimepicker({
+                                    format: 'YYYY-MM-DD',
+                                    locale: moment.locale('zh-cn')
+                                });
                             });
-                        });
-                    </script>
+                        </script>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="intention" class="col-sm-4 control-label">用途：</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" id="intention" name="intention" placeholder="请填写具体用途">
+                <div class="form-group">
+                    <label for="intention" class="col-sm-4 control-label">用途：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="intention" name="intention"
+                               placeholder="请填写具体用途">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-4 col-sm-4">
-                    <button type="submit" class="btn btn-default" id="submit" name="submit">提交</button>
-                    <span th:text="${errorList}"></span>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-4">
+                        <button type="submit" class="btn btn-default" id="submit" name="submit">提交</button>
+                        <span th:text="${errorList}"></span>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-
 </div>
 </body>
 <!--<script>
