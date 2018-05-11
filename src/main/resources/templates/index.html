@@ -64,18 +64,18 @@
             <h1>欢迎您，贡献者!</h1>
             <p>快添加您的贡献吧，哈哈哈</p>
         </div>
-        <div class="row">
+        <div class="row" style="padding-left: 15px;padding-right: 15px;">
             <form class="form-horizontal" action="/report/save" method="post">
                 <div class="form-group">
                     <label for="name" class="col-sm-4 control-label">姓名：</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="name" name="realName" placeholder="贡献人姓名">
+                        <input type="text" class="form-control" id="name" name="realName" placeholder="贡献人姓名" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="price" class="col-sm-4 control-label">价格：</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="price" name="price" placeholder="00.00">
+                        <input type="text" class="form-control" id="price" name="price" placeholder="00.00" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -83,7 +83,7 @@
                     <div class="col-sm-4">
                         <div class="input-group date" id="date-ico">
                             <input class="form-control" name="contributingTime"
-                                   placeholder="选择日期" type="text" id="date"> <span
+                                   placeholder="选择日期" type="text" id="date" required> <span
                                 class="input-group-addon"> <i
                                 class="glyphicon glyphicon-calendar"></i>
 								</span>
@@ -102,7 +102,7 @@
                     <label for="intention" class="col-sm-4 control-label">用途：</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="intention" name="intention"
-                               placeholder="请填写具体用途">
+                               placeholder="请填写具体用途" required>
                     </div>
                 </div>
                 <div class="form-group">
